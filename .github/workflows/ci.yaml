@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        version: [3.8, 3.9, 3.10, 3.11]
 
     steps:
       - name: code checkout
@@ -17,7 +18,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.version}}
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
