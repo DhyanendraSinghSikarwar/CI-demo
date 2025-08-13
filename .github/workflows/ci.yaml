@@ -34,20 +34,20 @@ jobs:
       - name: run flake8
         run: |
           flake8 app.py
-  
+
   testing:
+    needs: linting
     runs-on: ubuntu-latest
       
-      steps:
-        - name: code checkout
-          uses: actions/checkout@v3
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v3
 
-        - name: setup python
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.11
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
 
-        - name: run unit testing
-          run: |
-            python -m unittest
-        
+      - name: run unit testing
+        run: |
+          python -m unittest discover
